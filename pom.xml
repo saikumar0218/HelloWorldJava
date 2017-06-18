@@ -99,9 +99,9 @@
 <distributionManagement>
     <snapshotRepository>
         <id>snapshots</id>
-        <name>HelloWorldJava-snapshots</name>
+        <name>devops-training-snapshots</name>
         <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
-    </distributionManagement>
+</distributionManagement>
 
 </project>
