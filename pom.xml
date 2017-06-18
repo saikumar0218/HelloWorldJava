@@ -15,6 +15,11 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
@@ -25,6 +30,7 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<finalName>HelloJavaWorld</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -38,10 +44,40 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration></plugin>
+
+<!-- Cobertura plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check>
+						<haltOnFailure>false</haltOnFailure>
+						<lineRate>95</lineRate>
+						<branchRate>95</branchRate>
+						<totalLineRate>95</totalLineRate>
+						<totalBranchRate>95</totalBranchRate>
+					</check>
 				</configuration>
-			</plugin>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>					
+
+
+			
 			<plugin>
   				<groupId>org.eclipse.jetty</groupId>
   				<artifactId>jetty-maven-plugin</artifactId>
@@ -49,11 +85,23 @@
 			</plugin>			
 		</plugins>
 	</build>
-	  <distributionManagement>
+
+<reporting>
+    		<plugins>
+			 <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+		      </plugin>
+	    </plugins>
+	  </reporting>
+
+<distributionManagement>
     <snapshotRepository>
         <id>snapshots</id>
         <name>HelloWorldJava-snapshots</name>
         <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
-    </distributionManagement> --> 
+    </distributionManagement>
+
 </project>
